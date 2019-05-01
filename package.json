@@ -1,0 +1,60 @@
+{
+  "author": "Kengessov Shynggys @kschingiz",
+  "name": "dbtracer",
+  "version": "1.0.0",
+  "description": "MongoDB tracer",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "lib/**/*"
+  ],
+  "scripts": {
+    "prepare": "npm run build",
+    "prepublishOnly": "npm run lint",
+    "preversion": "npm run lint",
+    "build": "tsc",
+    "test": "nyc mocha -r ts-node/register src/**/*.spec.ts",
+    "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
+    "lint": "tslint -p tsconfig.json"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "nyc": "^14.0.0",
+    "request": "^2.88.0",
+    "winston": "^3.2.1"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.1.7",
+    "@types/mocha": "^5.2.6",
+    "@types/request": "^2.48.1",
+    "chai": "^4.2.0",
+    "mocha": "^6.1.4",
+    "prettier": "^1.16.4",
+    "ts-node": "^8.1.0",
+    "tslint": "^5.15.0",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^3.4.3"
+  },
+  "nyc": {
+    "include": [
+      "src/**/*.ts",
+      "src/**/*.tsx"
+    ],
+    "exclude": [
+      "src/**/*.spec.ts"
+    ],
+    "extension": [
+      ".ts",
+      ".tsx"
+    ],
+    "require": [
+      "ts-node/register"
+    ],
+    "reporter": [
+      "text",
+      "html"
+    ],
+    "sourceMap": true,
+    "instrument": true
+  }
+}
